@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+
+<section class="edit-container">
+    <h2>Edit Task</h2>
+    <form action="/edit/<%= todo.id %>" method="POST">
+        <input 
+            type="text" 
+            name="task" 
+            value="<%= todo.task %>" 
+            autocomplete="off"
+            required
+        >
+        <select name="priority">
+            <option value="high" <%= todo.priority === 'high' ? 'selected' : '' %>>High Priority</option>
+            <option value="medium" <%= todo.priority === 'medium' ? 'selected' : '' %>>Medium Priority</option>
+            <option value="low" <%= todo.priority === 'low' ? 'selected' : '' %>>Low Priority</option>
+        </select>
+        <div class="form-actions">
+            <a href="/" class="cancel">Cancel</a>
+            <button type="submit">Update Task</button>
+        </div>
+    </form>
+</section>
+
+<%- include('partials/footer') %>

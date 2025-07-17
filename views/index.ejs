@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+
+<section class="todo-container">
+    <form action="/add" method="POST" class="todo-form">
+        <input type="text" name="task" placeholder="Add new task..." autocomplete="off">
+        <select name="priority">
+            <option value="high">High Priority</option>
+            <option value="medium" selected>Medium Priority</option>
+            <option value="low">Low Priority</option>
+        </select>
+        <button type="submit"><i class="fas fa-plus"></i> Add</button>
+    </form>
+
+    <div class="filter-container">
+        <label>Filter by Priority:</label>
+        <div class="filter-options">
+            <a href="/?priority=all" class="<%= priorityFilter === 'all' ? 'active' : '' %>">All</a>
+            <a href="/?priority=high" class="<%= priorityFilter === 'high' ? 'active' : '' %>">High</a>
+            <a href="/?priority=medium" class="<%= priorityFilter === 'medium' ? 'active' : '' %>">Medium</a>
+            <a href="/?priority=low" class="<%= priorityFilter === 'low' ? 'active' : '' %>">Low</a>
+        </div>
+    </div>
+
+    <ul class="todo-list">
+        <% todos.forEach(todo => { %>
+        <li class="todo-item <%= todo.priority %>">
+            <span><%= todo.task %></span>
+            <div class="actions">
+                <a href="/edit/<%= todo.id %>" class="edit"><i class="fas fa-edit"></i></a>
+                <a href="/delete/<%= todo.id %>" class="delete"><i class="fas fa-trash"></i></a>
+            </div>
+            <span class="priority-badge"><%= todo.priority %></span>
+        </li>
+        <% }); %>
+    </ul>
+</section>
+
+<%- include('partials/footer') %>
