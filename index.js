@@ -8,11 +8,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// In-memory database
-let todos = [
-  { id: 1, task: 'Sample Task 1', priority: 'high' },
-  { id: 2, task: 'Sample Task 2', priority: 'medium' }
-];
 
 // Routes
 app.get('/', (req, res) => {
